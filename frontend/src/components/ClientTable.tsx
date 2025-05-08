@@ -10,7 +10,7 @@ export default function ClientTable({ clients, onDelete }) {
 
   const paginated = clients.slice((page - 1) * perPage, page * perPage);
 
-  // Modal content based on type
+  // Modal content based on type selected
   const renderModal = () => {
     if (!modal.client) return null;
 
@@ -52,7 +52,7 @@ export default function ClientTable({ clients, onDelete }) {
             <button
               style={{ background: "#650000", color: "#fff" }}
               onClick={() => {
-                onDelete(modal.client.account);
+                onDelete(modal.client.id);
                 setModal({ open: false, type: "", client: null });
               }}
             >

@@ -1,0 +1,62 @@
+import React from "react";
+import { FaSearch } from "react-icons/fa";
+import { FaBell } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+import "./Header.css";
+
+export default function Header({ search, setSearch, onSearch }) {
+  return (
+    <div className="header-card">
+      <div className="header-title">Client Directory</div>
+      <div className="header-row">
+        <fieldset className="input-fieldset wide">
+          <legend>Name</legend>
+          <input
+            className="input"
+            type="text"
+            value={search.name}
+            onChange={(e) => setSearch({ ...search, name: e.target.value })}
+          />
+        </fieldset>
+
+        <fieldset className="input-fieldset">
+          <legend>Birthday</legend>
+          <input
+            className="input"
+            type="text"
+            placeholder="MM/DD/YYYY"
+            value={search.birthday}
+            onChange={(e) => setSearch({ ...search, birthday: e.target.value })}
+          />
+        </fieldset>
+
+        <fieldset className="input-fieldset">
+          <legend>Account Type</legend>
+          <select
+            className="input"
+            value={search.type}
+            onChange={(e) => setSearch({ ...search, type: e.target.value })}
+          >
+            <option value="">Type</option>
+            <option value="Checking">Checking</option>
+            <option value="Savings">Savings</option>
+          </select>
+        </fieldset>
+
+        <button className="search-btn" onClick={onSearch}>
+          <span role="img" aria-label="search"><FaSearch /></span>
+        </button>
+
+        <div className="icons">
+          <span role="img" aria-label="bell"><FaBell style={{ color: '#999999', fontSize: '21px',marginTop: '12px' }} /></span>
+          <span role="img" aria-label="settings"><IoMdSettings  style={{ color: '#999999', fontSize: '25px',marginTop: '10px' }} /></span>
+          <img
+            src="/img/profile.jpg" // replace with actual image path
+            alt="User Avatar"
+            className="avatar-img"
+           />
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -2,8 +2,28 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./ClientTable.css";
 
-export default function ClientTable({ clients, onDelete }) {
-  const [modal, setModal] = useState({ open: false, type: "", client: null });
+interface Client {
+  id:  number;
+  name: string;
+  birthday: string;
+  type: string;
+  account: string;
+  balance: number;
+}
+
+interface ClientTableProps {
+  clients: Client[];
+  onDelete: (id: number) => void;
+}
+
+interface ModalState {
+  open: boolean;
+  type: string;
+  client: Client | null;
+}
+
+export default function ClientTable({ clients, onDelete }: ClientTableProps) {
+  const [modal, setModal] = useState<ModalState>({ open: false, type: "", client: null });
   const [page, setPage] = useState(1);
   const perPage = 13;
   const pageCount = Math.ceil(clients.length / perPage);
@@ -19,7 +39,7 @@ export default function ClientTable({ clients, onDelete }) {
       return (
         <motion.div
           className="modal"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 40 }}
@@ -40,7 +60,7 @@ export default function ClientTable({ clients, onDelete }) {
       return (
         <motion.div
           className="modal"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 40 }}
@@ -52,7 +72,10 @@ export default function ClientTable({ clients, onDelete }) {
             <button
               style={{ background: "#650000", color: "#fff" }}
               onClick={() => {
-                onDelete(modal.client.id);
+                // Add null check to ensure client is not null
+                if (modal.client) {
+                  onDelete(modal.client.id);
+                }
                 setModal({ open: false, type: "", client: null });
               }}
             >
@@ -85,7 +108,7 @@ export default function ClientTable({ clients, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {paginated.map((client, idx) => (
+          {paginated.map((client: Client) => (
             <tr key={client.id}>
               <td>{client.name}</td>
               <td>{client.birthday}</td>

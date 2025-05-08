@@ -2,9 +2,21 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import Image from "next/image";
 import "./Header.css";
 
-export default function Header({ search, setSearch, onSearch }) {
+interface SearchState {
+  name: string;
+  birthday: string;
+  type: string;
+}
+interface HeaderProps {
+  search: SearchState;
+  setSearch: React.Dispatch<React.SetStateAction<SearchState>>;
+  onSearch: () => void;
+}
+
+export default function Header({ search, setSearch, onSearch }: HeaderProps) {
   return (
     <div className="header-card">
       <div className="header-title">Client Directory</div>
@@ -48,13 +60,17 @@ export default function Header({ search, setSearch, onSearch }) {
         </button>
 
         <div className="icons">
-          <span role="img" aria-label="bell"><FaBell style={{ color: '#999999', fontSize: '21px',marginTop: '12px' }} /></span>
-          <span role="img" aria-label="settings"><IoMdSettings  style={{ color: '#999999', fontSize: '25px',marginTop: '10px' }} /></span>
-          <img
-            src="/img/profile.jpg" // replace with actual image path
-            alt="User Avatar"
-            className="avatar-img"
-           />
+          <span role="img" aria-label="bell"><FaBell style={{ color: '#999999', fontSize: '21px', marginTop: '12px' }} /></span>
+          <span role="img" aria-label="settings"><IoMdSettings style={{ color: '#999999', fontSize: '25px', marginTop: '10px' }} /></span>
+          <div className="avatar-container">
+            <Image
+              src="/img/profile.jpg"
+              alt="User Avatar"
+              width={40}
+              height={40}
+              className="avatar-img"
+            />
+          </div>
         </div>
       </div>
     </div>

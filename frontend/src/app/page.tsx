@@ -12,8 +12,9 @@ export default async function HomePage() {
   try {
     clients = await getClients();
   } catch (e) {
-    return <div>Failed to load clients.</div>;
-  }
+  console.error('Error loading clients:', e);
+  return <div>Failed to load clients: {(e as Error).message}</div>;
+}
   return (
     <main style={{ maxWidth: 1278, margin: "2rem auto" }}>
       <HeaderAndTable initialClients={clients} />

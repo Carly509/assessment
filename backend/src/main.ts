@@ -9,4 +9,11 @@ async function bootstrap() {
 
   await app.listen(3001);
 }
-bootstrap();
+
+bootstrap().catch((err) => {
+  console.error('Failed to start application:', err);
+  process.exit(1);
+});
+
+//  Alternative solution by explicitly ignoring the Promise with void operator
+// void bootstrap();

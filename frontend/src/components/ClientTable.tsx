@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./ClientTable.css";
 
 export default function ClientTable({ clients, onDelete }) {
@@ -16,7 +17,14 @@ export default function ClientTable({ clients, onDelete }) {
     if (modal.type === "details") {
       const { name, birthday, type, account, balance } = modal.client;
       return (
-        <div className="modal" onClick={e => e.stopPropagation()}>
+        <motion.div
+          className="modal"
+          onClick={e => e.stopPropagation()}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 40 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
           <h3>Client Details</h3>
           <p><strong>Name:</strong> {name}</p>
           <p><strong>Birthday:</strong> {birthday}</p>
@@ -24,13 +32,20 @@ export default function ClientTable({ clients, onDelete }) {
           <p><strong>Account:</strong> {account}</p>
           <p><strong>Balance:</strong> ${balance.toLocaleString()}</p>
           <button onClick={() => setModal({ open: false, type: "", client: null })}>Close</button>
-        </div>
+        </motion.div>
       );
     }
 
     if (modal.type === "close") {
       return (
-        <div className="modal" onClick={e => e.stopPropagation()}>
+        <motion.div
+          className="modal"
+          onClick={e => e.stopPropagation()}
+          initial={{ opacity: 0, scale: 0.9, y: 40 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 40 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
           <h3>Are you sure?</h3>
           <p>This account will be closed.</p>
           <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
@@ -49,7 +64,7 @@ export default function ClientTable({ clients, onDelete }) {
               No
             </button>
           </div>
-        </div>
+        </motion.div>
       );
     }
 
@@ -105,11 +120,29 @@ export default function ClientTable({ clients, onDelete }) {
         <button disabled={page === pageCount} onClick={() => setPage(page + 1)}>Next</button>
       </div>
       {/* Modal */}
-      {modal.open && (
-        <div className="modal-backdrop" onClick={() => setModal({ open: false, type: "", client: null })}>
-          {renderModal()}
-        </div>
-      )}
+      <AnimatePresence>
+        {modal.open && (
+          <motion.div
+            className="modal-backdrop"
+            onClick={() => setModal({ open: false, type: "", client: null })}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              position: "fixed",
+              top: 0, left: 0, right: 0, bottom: 0,
+              background: "rgba(0,0,0,0.4)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1000,
+            }}
+          >
+            {renderModal()}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

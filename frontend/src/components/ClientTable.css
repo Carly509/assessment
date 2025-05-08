@@ -1,119 +1,173 @@
 .table-card {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    overflow-x: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.client-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.client-table thead {
+  margin: 0;
+  padding: 0;
+}
+.client-table th {
+  background: #650000;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  padding: 0.5rem 2rem;
+  border: none;
+}
+.client-table td {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  height: 30px;
+  font-size: 15px;
+  line-height: 25px;
+  letter-spacing: -0.02em;
+  color: #777777;
+  padding: 0.75rem 1.75rem;
+}
+.client-table tr:nth-child(even) td {
+  background: #F5F5F5;
+}
+.balance {
+  font-weight: bold!important;
+  color: #777777;
+}
+.action-link {
+  color: #650000;
+  cursor: pointer;
+  font-weight: 500;
+}
+.action-link:hover {
+  text-decoration: underline;
+}
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.10rem 1.75rem;
+}
+.pagination button {
+  background: #650000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  min-width: 300px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+.modal-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.modal-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+.modal-btn-danger {
+  background-color: #650000;
+  color: white;
+}
+.modal-btn-danger:hover {
+  background-color: #800000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.modal-btn-cancel {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+.modal-btn-cancel:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.close-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+@media (max-width: 600px) {
+  .table-card {
+    padding: 0.5rem;
   }
-
-  .client-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .client-table thead {
-    margin: 0;
-    padding: 0;
-  }
-
-  .client-table th {
-    background: #650000;
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 25px;
-    letter-spacing: -0.02em;
-    text-align: left;
-    padding: 0.5rem 2rem;
-    border: none;
-  }
-
+  .client-table th,
   .client-table td {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    height: 30px;
-    font-size: 15px;
-    line-height: 25px;
-    letter-spacing: -0.02em;
-    color: #777777;
-    padding: 0.75rem 1.75rem;
+    padding: 0.4rem;
+    font-size: 0.95rem;
   }
-
-  .client-table tr:nth-child(even) td {
-    background: #F5F5F5;
-  }
-
-  .balance {
-    font-weight: bold!important;
-    color:#777777;
-  }
-
-  .action-link {
-    color: #650000;
-    cursor: pointer;
-    font-weight: 500;
-  }
-
-  .action-link:hover {
-    text-decoration: underline;
-  }
-
-  .pagination {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0.10rem 1.75rem;
-  }
-
-  .pagination button {
-    background: #650000;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 0.4rem 0.8rem;
-    cursor: pointer;
-  }
-
-  .pagination button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-
-  .modal-backdrop {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-  }
-
   .modal {
-    background: #fff;
-    border-radius: 12px;
-    padding: 2rem;
-    min-width: 300px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    min-width: 80vw;
+    padding: 1rem;
   }
-
-  @media (max-width: 600px) {
-    .table-card {
-      padding: 0.5rem;
-    }
-    .client-table th, .client-table td {
-      padding: 0.4rem;
-      font-size: 0.95rem;
-    }
-    .modal {
-      min-width: 80vw;
-      padding: 1rem;
-    }
-  }
+}

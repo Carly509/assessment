@@ -3,13 +3,11 @@ body {
   background: #ffff;
   font-family: 'Poppins', sans-serif;
 }
-
 .loading-icon {
   color: #650000;;
   font-size: 2rem;
   animation: animate 2s infinite;
 }
-
 @keyframes animate {
   0% {
     transform: rotate(0deg);

@@ -1,6 +1,13 @@
 # 🗂️ App
 
-A full-stack c web app built with:
+A full-stack web app that allows you to:
+
+- **Fetch a list of clients**
+- **Apply search filters** by name, birthday, or account type
+- **View client details** in a modal
+- **Delete client accounts**
+
+This application is built with:
 
 - **Frontend**: Next.js (App Router with Server-Side Rendering)
 - **Backend**: NestJS + PostgreSQL + Prisma
@@ -10,11 +17,11 @@ A full-stack c web app built with:
 
 ## 📁 Project Structure
 
----
-
+```
 root/
 ├── frontend/ # Next.js (App Router)
-│ ├── app/
+│ ├── public/
+│ ├── src/
 │ └── ...
 ├── backend/ # NestJS + Prisma + PostgreSQL
 │ ├── src/
@@ -23,8 +30,21 @@ root/
 ├── package.json # Root script controller
 └── README.md
 
+```
+---
 
-`---  ## ⚙️ Requirements  - Node.js v18+ - PostgreSQL (locally or cloud) - npm  ---  ## 🚀 Getting Started  ### 1. Clone the Repository  ```bash git clone https://github.com/yourusername/client-directory-app.git cd client-directory-app`
+## ⚙️ Requirements
+- Node.js v18+
+- PostgreSQL (locally or cloud)
+- npm
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+`bash git clone https://github.com/yourusername/directory-app.git`
+and then
+`cd client-directory-app`
 
 * * *
 
@@ -52,8 +72,14 @@ From the root of the project:
 
 ### 4\. Set Up the Database
 
-
 `cd backend npx prisma generate npx prisma migrate dev --name init`
+
+
+### 4.1\. Add fake data to the Database
+
+`npx ts-node prisma/seed.ts`
+> This will add 20 fake clients to the database.
+> You can modify the `prisma/seed.ts` file to customize the data.
 
 * * *
 
@@ -96,6 +122,8 @@ The frontend fetches data directly using native `fetch()` inside server componen
  *   Data table with pagination
 
  *   Search functionality
+
+ *   Framer Motion for fluid, professional animations throughout the UI.
 
  *   Modal components for actions (Details, Close Account)
 

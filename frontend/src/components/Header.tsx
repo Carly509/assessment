@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
@@ -60,8 +61,12 @@ export default function Header({ search, setSearch, onSearch }: HeaderProps) {
         </button>
 
         <div className="icons">
-          <span role="img" aria-label="bell"><FaBell style={{ color: '#999999', fontSize: '21px', marginTop: '12px' }} /></span>
-          <span role="img" aria-label="settings"><IoMdSettings style={{ color: '#999999', fontSize: '25px', marginTop: '10px' }} /></span>
+          <span className="icon-wrapper" style={{ fontSize: '21px' }} role="img" aria-label="bell">
+            <FaBell />
+          </span>
+          <span className="icon-wrapper" style={{ fontSize: '25px'}} role="img" aria-label="settings">
+            <IoMdSettings />
+          </span>
           <div className="avatar-container">
             <Image
               src="/img/profile.jpg"

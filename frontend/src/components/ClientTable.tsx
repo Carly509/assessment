@@ -1,5 +1,7 @@
+'use client'
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IoClose } from "react-icons/io5";
 import "./ClientTable.css";
 
 interface Client {
@@ -45,14 +47,21 @@ export default function ClientTable({ clients, onDelete }: ClientTableProps) {
           exit={{ opacity: 0, scale: 0.9, y: 40 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <h3>Client Details</h3>
-          <p><strong>Name:</strong> {name}</p>
-          <p><strong>Birthday:</strong> {birthday}</p>
-          <p><strong>Type:</strong> {type}</p>
-          <p><strong>Account:</strong> {account}</p>
-          <p><strong>Balance:</strong> ${balance.toLocaleString()}</p>
-          <button onClick={() => setModal({ open: false, type: "", client: null })}>Close</button>
-        </motion.div>
+          <div className="modal-header">
+    <h3>Client Details</h3>
+    <button
+      className="close-button"
+      onClick={() => setModal({ open: false, type: "", client: null })}
+    >
+      <IoClose />
+    </button>
+      </div>
+      <p><strong>Name:</strong> {name}</p>
+      <p><strong>Birthday:</strong> {birthday}</p>
+      <p><strong>Type:</strong> {type}</p>
+      <p><strong>Account:</strong> {account}</p>
+      <p><strong>Balance:</strong> ${balance.toLocaleString('en-US')}</p>
+    </motion.div>
       );
     }
 
@@ -68,9 +77,9 @@ export default function ClientTable({ clients, onDelete }: ClientTableProps) {
         >
           <h3>Are you sure?</h3>
           <p>This account will be closed.</p>
-          <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+          <div className="modal-actions">
             <button
-              style={{ background: "#650000", color: "#fff" }}
+              className="modal-btn modal-btn-danger"
               onClick={() => {
                 // Add null check to ensure client is not null
                 if (modal.client) {
@@ -82,6 +91,7 @@ export default function ClientTable({ clients, onDelete }: ClientTableProps) {
               Yes
             </button>
             <button
+              className="modal-btn modal-btn-cancel"
               onClick={() => setModal({ open: false, type: "", client: null })}
             >
               No
@@ -114,7 +124,7 @@ export default function ClientTable({ clients, onDelete }: ClientTableProps) {
               <td>{client.birthday}</td>
               <td>{client.type}</td>
               <td>{client.account}</td>
-              <td className="balance">${client.balance.toLocaleString()}</td>
+              <td className="balance">${client.balance.toLocaleString('en-US')}</td>
               <td>
                 <span
                   className="action-link"

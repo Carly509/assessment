@@ -2,22 +2,29 @@ import HeaderAndTable from "@/components/HeaderAndTable";
 
 async function getClients() {
 
-  const res = await fetch("http://localhost:3001/clients", { cache: "no-store" });
+  const res = await fetch("http://localhost:3001/clients", { cache: "default" });
   if (!res.ok) throw new Error("Failed to fetch clients");
   return await res.json();
 }
 
 export default async function HomePage() {
   let clients = [];
+  let errorMessage = null;
+
   try {
     clients = await getClients();
   } catch (e) {
-  console.error('Error loading clients:', e);
-  return <div>Failed to load clients: {(e as Error).message}</div>;
-}
+    console.error('Error loading clients:', e);
+    errorMessage = (e as Error).message;
+  }
+
   return (
     <main style={{ maxWidth: 1278, margin: "2rem auto" }}>
-      <HeaderAndTable initialClients={clients} />
+      {errorMessage ? (
+        <div>Failed to load clients: {errorMessage}</div>
+      ) : (
+        <HeaderAndTable initialClients={clients} />
+      )}
     </main>
   );
 }

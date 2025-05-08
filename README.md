@@ -1,5 +1,7 @@
 # 🗂️ App
 
+<img width="1107" alt="Image" src="https://github.com/user-attachments/assets/69301242-cac8-4124-a80f-643c2dee2364" />
+
 A full-stack web app that allows you to:
 
 - **Fetch a list of clients**

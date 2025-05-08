@@ -1,41 +1,98 @@
 node_modules/
 
 # dependencies
-client/node_modules
-client/.pnp
-client/.pnp.*
-client/.yarn/*
-client/!.yarn/patches
-client/!.yarn/plugins
-client/!.yarn/releases
-client/!.yarn/versions
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.*
+frontend/.yarn/*
+frontend/!.yarn/patches
+frontend/!.yarn/plugins
+frontend/!.yarn/releases
+frontend/!.yarn/versions
 
 # testing
-client/coverage
+frontend/coverage
 
 # next.js
-client/.next/
-client/out/
+frontend/.next/
+frontend/out/
 
 # production
-client/build
+frontend/build
 
 # misc
-client/.DS_Store
-client/*.pem
+frontend/.DS_Store
+frontend/*.pem
 
 # debug
-client/npm-debug.log*
-client/yarn-debug.log*
-client/yarn-error.log*
-client/.pnpm-debug.log*
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-client/.env*
+frontend/.env*
 
 # vercel
-client/.vercel
+frontend/.vercel
 
 # typescript
-client/*.tsbuildinfo
-client/next-env.d.ts
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# compiled output
+backend/dist
+backend/node_modules
+backend/build
+
+# Logs
+backend/logs
+backend/*.log
+backend/npm-debug.log*
+backend/pnpm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/lerna-debug.log*
+
+# OS
+backend/.DS_Store
+
+# Tests
+backend/coverage
+backend/.nyc_output
+
+# IDEs and editors
+backend/.idea
+backend/.project
+backend/.classpath
+backend/.c9/
+backend/*.launch
+backend/.settings/
+backend/*.sublime-workspace
+
+# IDE - VSCode
+backend/.vscode/*
+backend/!.vscode/settings.json
+backend/!.vscode/tasks.json
+backend/!.vscode/launch.json
+backend/!.vscode/extensions.json
+
+# dotenv environment variable files
+backend/.env
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+backend/.env.local
+
+# temp directory
+backend/.temp
+backend/.tmp
+
+# Runtime data
+backend/pids
+backend/*.pid
+backend/*.seed
+backend/*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/backend/report.html)
+backend/report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

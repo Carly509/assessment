@@ -71,7 +71,7 @@ export default function ClientTable({ clients, onDelete }) {
         </thead>
         <tbody>
           {paginated.map((client, idx) => (
-            <tr key={client.account}>
+            <tr key={client.id}>
               <td>{client.name}</td>
               <td>{client.birthday}</td>
               <td>{client.type}</td>

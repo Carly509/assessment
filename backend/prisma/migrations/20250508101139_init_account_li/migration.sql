@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Client" ALTER COLUMN "account" DROP DEFAULT,
+ALTER COLUMN "account" SET DATA TYPE TEXT;

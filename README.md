@@ -1,90 +1,127 @@
-# Assessment
+# 🗂️ App
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+A full-stack c web app built with:
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+- **Frontend**: Next.js (App Router with Server-Side Rendering)
+- **Backend**: NestJS + PostgreSQL + Prisma
+- **Managed via a monorepo root** for unified dev workflow
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+---
 
-## Finish your CI setup
+## 📁 Project Structure
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/bKBWhGq5gK)
+---
 
-
-## Generate a library
-
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
-
-## Run tasks
-
-To build the library use:
-
-```sh
-npx nx build pkg1
-```
-
-To run any task with Nx use:
-
-```sh
-npx nx <target> <project-name>
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
-
-```
-npx nx release
-```
-
-Pass `--dry-run` to see what would happen without actually releasing the library.
-
-[Learn more about Nx release &raquo;](hhttps://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Keep TypeScript project references up to date
-
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
-
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
-```
-
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
-
-```sh
-npx nx sync:check
-```
-
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+root/
+├── frontend/ # Next.js (App Router)
+│ ├── app/
+│ └── ...
+├── backend/ # NestJS + Prisma + PostgreSQL
+│ ├── src/
+│ ├── prisma/
+│ └── ...
+├── package.json # Root script controller
+└── README.md
 
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+`---  ## ⚙️ Requirements  - Node.js v18+ - PostgreSQL (locally or cloud) - npm  ---  ## 🚀 Getting Started  ### 1. Clone the Repository  ```bash git clone https://github.com/yourusername/client-directory-app.git cd client-directory-app`
 
-## Install Nx Console
+* * *
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+### 2\. Configure Backend Environment
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Create a `.env` file inside `backend/`:
 
-## Useful links
 
-Learn more:
+`DATABASE_URL="postgresql://USERNAME:PASSWORD@localhost:5432/client_directory"`
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Make sure PostgreSQL is running and the database exists.
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+* * *
+
+### 3\. Install All Dependencies
+
+From the root of the project:
+
+
+`npm run install:all`
+
+> This installs frontend and backend dependencies.
+
+* * *
+
+### 4\. Set Up the Database
+
+
+`cd backend npx prisma generate npx prisma migrate dev --name init`
+
+* * *
+
+### 5\. Run the App (Both Frontend + Backend)
+
+From the root of the project:
+
+`npm run dev`
+
+ *   Frontend: [http://localhost:3000](http://localhost:3000)
+
+ *   Backend: [http://localhost:3001](http://localhost:3001)
+
+
+* * *
+
+## 🌐 SSR with Next.js
+
+The frontend fetches data directly using native `fetch()` inside server components:
+
+
+`const res = await fetch("http://localhost:3001/clients", { cache: "no-store" }); const data = await res.json();`
+
+> This makes the app fully server-rendered and eliminates the need for client-side data fetching libraries.
+
+* * *
+
+## 🧪 Features
+
+ *   Fully SSR frontend with no client-side fetching libraries
+
+ *   Backend REST API with CRUD (GET + DELETE)
+
+ *   PostgreSQL database via Prisma ORM
+
+ *   Global scripts for managing both projects
+
+ *   Monorepo structure for unified development
+
+ *   Data table with pagination
+
+ *   Search functionality
+
+ *   Modal components for actions (Details, Close Account)
+
+* * *
+
+## 🐞 Troubleshooting
+
+ *   **Prisma Errors**: Run `npx prisma generate` and ensure `.env` is correctly configured.
+
+ *   **Port Conflicts**: Make sure ports `3000` (frontend) and `3001` (backend) are available.
+
+ *   **CORS Errors**: Enable CORS in `main.ts` of NestJS:
+
+    `app.enableCors({ origin: 'http://localhost:3000' });`
+
+* * *
+
+## 🧼 Clean Build
+
+`npm run build`
+ `npm run start`
+
+> Runs production builds for both frontend and backend.
+
+* * *
+
+## 📄 License
+
+MIT

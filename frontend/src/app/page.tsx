@@ -1,31 +1,25 @@
-'use client';
-import React, { useState } from "react";
-import Header from "@/components/Header";
-import ClientTable from "@/components/ClientTable";
-import { clients as dummyClients } from "@/data/clients";
+import HeaderAndTable from "@/components/HeaderAndTable";
 
-export default function HomePage() {
-  const [search, setSearch] = useState({ name: "", birthday: "", type: "" });
-  const [clientList, setClientList] = useState(dummyClients);
+// Example: Replace this with your actual data-fetching logic
+async function getClients() {
+  // Fetch from external API or database here
+  // For demonstration, we'll use a placeholder API
+  const res = await fetch("http://localhost:3001/clients", { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch clients");
+  // Transform data to match your client structure if needed
+  return await res.json();
+}
 
-  const handleSearch = () => {
-    setClientList(
-      dummyClients.filter(client =>
-        (search.name === "" || client.name.toLowerCase().includes(search.name.toLowerCase())) &&
-        (search.birthday === "" || client.birthday === search.birthday) &&
-        (search.type === "" || client.type === search.type)
-      )
-    );
-  };
-
-  const handleDelete = (account) => {
-    setClientList(prev => prev.filter(c => c.account !== account));
-  };
-
+export default async function HomePage() {
+  let clients = [];
+  try {
+    clients = await getClients();
+  } catch (e) {
+    return <div>Failed to load clients.</div>;
+  }
   return (
     <main style={{ maxWidth: 1278, margin: "2rem auto" }}>
-      <Header search={search} setSearch={setSearch} onSearch={handleSearch} />
-      <ClientTable clients={clientList} onDelete={handleDelete} />
+      <HeaderAndTable initialClients={clients} />
     </main>
   );
 }

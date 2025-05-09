@@ -43,6 +43,9 @@
 .input-fieldset:focus-within {
   border: 2px solid #650000;
 }
+.input-fieldset:focus-within legend {
+  color: #650000;
+}
 .search-btn {
   background: #650000;
   color: #fff;

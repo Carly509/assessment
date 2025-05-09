@@ -2,7 +2,7 @@ import HeaderAndTable from "@/components/HeaderAndTable";
 
 async function getClients() {
   // await new Promise(resolve => setTimeout(resolve, 3000));
-  const res = await fetch("http://localhost:3001/clients", { cache: "default" });
+  const res = await fetch("http://localhost:3001/clients", { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch clients");
   return await res.json();
 }

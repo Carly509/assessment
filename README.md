@@ -111,6 +111,8 @@ The frontend fetches data directly using native `fetch()` inside server componen
 
 ## 🧪 Features
 
+ *   Search Button for filtering clients by name, birthday, or account type
+
  *   Fully SSR frontend with no client-side fetching libraries
 
  *   Backend REST API with CRUD (GET + DELETE)
@@ -125,7 +127,7 @@ The frontend fetches data directly using native `fetch()` inside server componen
 
  *   Search functionality
 
- *   Framer Motion for fluid, professional animations throughout the UI.
+ *   Framer Motion for fluid, lazy loading and professional animations throughout the UI.
 
  *   Modal components for actions (Details, Close Account)
 

@@ -4,8 +4,8 @@ export const dynamic = "force-dynamic";
 import HeaderAndTable from "@/components/HeaderAndTable";
 
 async function getClients() {
-  const res = await fetch("http://localhost:3001/clients", {
-    cache: "no-store", // ensures server-side freshness
+const res = await fetch(`${process.env.BACKEND_URL}/clients`, {
+    cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch clients");
   return await res.json();

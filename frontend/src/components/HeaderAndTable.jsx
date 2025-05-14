@@ -1,8 +1,7 @@
 'use client';
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import ClientTable from "@/components/ClientTable";
-import debounce from "lodash.debounce";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function HeaderAndTable({ initialClients }) {
@@ -12,22 +11,15 @@ export default function HeaderAndTable({ initialClients }) {
   const [deletingId, setDeletingId] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
 
-  // Debounced search for smooth UX
-  const debouncedSearch = useCallback(
-    debounce((searchObj, list) => {
-      setClientList(
-        list.filter(client =>
-          (searchObj.name === "" || (client.name && client.name.toLowerCase().includes(searchObj.name.toLowerCase()))) &&
-          (searchObj.birthday === "" || client.birthday === searchObj.birthday) &&
-          (searchObj.type === "" || client.type === searchObj.type)
-        )
-      );
-    }, 300),
-    []
-  );
 
   const handleSearch = () => {
-    debouncedSearch(search, originalClientList);
+    setClientList(
+      originalClientList.filter(client =>
+        (search.name === "" || (client.name && client.name.toLowerCase().includes(search.name.toLowerCase()))) &&
+        (search.birthday === "" || client.birthday === search.birthday) &&
+        (search.type === "" || client.type === search.type)
+      )
+    );
   };
 
   // API DELETE integration using id

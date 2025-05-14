@@ -27,7 +27,7 @@ export default function HeaderAndTable({ initialClients }) {
     if (deletingId) return; // Prevent double delete
     setDeletingId(id);
     try {
-      const res = await fetch(`${process.env.BACKEND_URL}/clients/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/clients/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) {
